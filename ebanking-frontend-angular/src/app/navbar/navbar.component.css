@@ -1,0 +1,35 @@
+/* navbar.component.css */
+.navbar {
+    background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%);
+  }
+  
+  .navbar-brand span {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  .nav-link {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ffc107;
+  }
+  
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .btn-primary {
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .btn-primary:hover {
+    background-color: #ffcd39;
+    border-color: #ffcd39;
+  }
+  

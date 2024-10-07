@@ -1,0 +1,81 @@
+<div class="operation-container">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Create Operation</h2>
+            <p class="lead">Choose an operation type and fill in the details</p>
+        </div>
+
+        <div class="card-body">
+            <ul class="nav nav-tabs mb-4" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': activeTab === 'credit'}" (click)="setActiveTab('credit')"
+                        role="tab">Credit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': activeTab === 'debit'}" (click)="setActiveTab('debit')"
+                        role="tab">Debit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [ngClass]="{'active': activeTab === 'transfer'}"
+                        (click)="setActiveTab('transfer')" role="tab">Transfer</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- Credit Operation Form -->
+                <div *ngIf="activeTab === 'credit'" class="tab-pane show active" id="credit" role="tabpanel">
+                    <!-- Credit form fields -->
+                    <form #creditForm="ngForm" (ngSubmit)="onSubmitCredit(creditForm)">
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" class="form-control" name="amount" [(ngModel)]="creditAmount" required
+                                placeholder="Enter Amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" [(ngModel)]="creditDescription" required
+                                rows="3" placeholder="Description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Add Credit</button>
+                    </form>
+                </div>
+
+                <!-- Debit Operation Form -->
+                <div *ngIf="activeTab === 'debit'" class="tab-pane show active" id="debit" role="tabpanel">
+                    <!-- Debit form fields -->
+                    <form #debitForm="ngForm" (ngSubmit)="onSubmitDebit(debitForm)">
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" class="form-control" name="amount" [(ngModel)]="debitAmount" required
+                                placeholder="Enter Amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" [(ngModel)]="debitDescription" required
+                                rows="3" placeholder="Description"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-block">Add Debit</button>
+                    </form>
+                </div>
+
+                <!-- Transfer Operation Form -->
+                <div *ngIf="activeTab === 'transfer'" class="tab-pane show active" id="transfer" role="tabpanel">
+                    <!-- Transfer form fields -->
+                    <form #transferForm="ngForm" (ngSubmit)="onSubmitTransfer(transferForm)">
+                        <div class="form-group">
+                            <label>To Account ID</label>
+                            <input type="text" class="form-control" name="toAccountId" [(ngModel)]="toAccountId"
+                                required placeholder="Enter Destination Account ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" class="form-control" name="amount" [(ngModel)]="transferAmount"
+                                required placeholder="Enter Transfer Amount">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Make Transfer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

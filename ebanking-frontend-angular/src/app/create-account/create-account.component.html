@@ -1,0 +1,58 @@
+<div class="container"></div>
+<div class="card">
+    <div class="card-header">
+        <h2>Create New Account</h2>
+    </div>
+    <div class="card-content">
+        <form #accountForm="ngForm" novalidate>
+            <div class="form-group">
+                <label for="balance">Balance</label>
+                <input type="number" id="balance" name="balance" class="form-control" [(ngModel)]="balance" required
+                    minlength="3" #balance="ngModel" />
+                <div *ngIf="balance.invalid && balance.touched" class="error-message">
+                    <p *ngIf="balance.errors?.['required']">Balance is required</p>
+                    <p *ngIf="balance.errors?.['minlength']">Minimum 3 characters</p>
+                </div>
+            </div>
+
+            <!-- Add Account Type Dropdown -->
+            <div class="form-group">
+                <label for="accountType">Account Type</label>
+                <select id="accountType" name="accountType" class="form-control" [(ngModel)]="accountType" required>
+                    <option value="">Select Account Type</option>
+                    <option value="CURRENT">Current Account</option>
+                    <option value="SAVING">Saving Account</option>
+                </select>
+            </div>
+
+            <!-- Input for Interest Rate for Saving Account -->
+            <div class="form-group" *ngIf="accountType === 'SAVING'">
+                <label for="interestRate">Interest Rate (%)</label>
+                <input type="number" id="interestRate" name="interestRate" class="form-control"
+                    [(ngModel)]="interestRate" required #interestRate="ngModel" />
+                <div *ngIf="interestRate.invalid && interestRate.touched" class="error-message">
+                    <p *ngIf="interestRate.errors?.['required']">Interest rate is required</p>
+                </div>
+            </div>
+
+            <!-- Input for Overdraft for Current Account -->
+            <div class="form-group" *ngIf="accountType === 'CURRENT'">
+                <label for="overdraft">Overdraft (DH)</label>
+                <input type="number" id="overdraft" name="overdraft" class="form-control" [(ngModel)]="overdraft"
+                    required #overdraft="ngModel" />
+                <div *ngIf="overdraft.invalid && overdraft.touched" class="error-message">
+                    <p *ngIf="overdraft.errors?.['required']">Overdraft is required</p>
+                </div>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="submit-button" [disabled]="accountForm.invalid" (click)="createAccount()">
+                    Create Account
+                </button>
+                <button type="reset" class="reset-button">
+                    Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

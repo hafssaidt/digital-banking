@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="notification" *ngIf="errMessage">
+        <p class="text-danger">{{ errMessage }}</p>
+    </div>
+    <div class="card" *ngIf="accounts">
+        <div class="card-header">
+            <h2>Accounts</h2>
+        </div>
+        <div class="card-content">
+            <div class="search-container">
+                <input type="text" placeholder="Search accounts..." [(ngModel)]="keyword" class="search-input" />
+                <button class="search-button" (click)="getAllAccounts()">
+                    <i class="bi bi-search"></i>
+                </button>
+                <button *ngIf="customerId" class="create-button" (click)="createNewAccount()">
+                    + Add Account
+                </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Balance</th>
+                        <th>Currency</th>
+                        <th>Status</th>
+                        <th>Created at</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let account of accounts">
+                        <td>{{ account.accountType }}</td>
+                        <td>{{ account.balance }}</td>
+                        <td>{{ account.currency }}</td>
+                        <td>{{ account.status }}</td>
+                        <td>{{ account.createdAt | date }} </td>
+                        <td class="search-container">
+                            <button class="view-button" (click)="viewAccount(account.id)">
+                                <i class="bi bi-eye"></i> </button>
+                            <button class="delete-button" (click)="deleteAccount(account.id)">
+                                <i class="bi bi-trash"></i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
